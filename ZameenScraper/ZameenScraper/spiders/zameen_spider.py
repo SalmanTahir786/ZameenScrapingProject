@@ -6,7 +6,11 @@ class ZameenSpider(scrapy.Spider):
     start_urls = [
         'https://www.zameen.com/all-cities/pakistan-1-9.html'
     ]
-    custom_settings = {"FEEDS": {"results.csv": {"format": "json"}}}
+
+    custom_settings = {
+        "FEED_FORMAT": 'json',
+        "FEED_URI": 'results.json'
+    }
 
     def parse(self, response):
         cities_names = response.xpath('//li[@class="_45afd756"]/a/text()').extract()
